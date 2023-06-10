@@ -6,9 +6,12 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 
 const authRoute = require("./routes/auth-route");
+const adminRoute = require("./routes/admin-route");
 
 const notFoundMiddleware = require("./middleware/notFound");
 const errorMiddleware = require("./middleware/error");
+const authenticate = require("./middleware/authenticate");
+const authenticateAdmin = require("./middleware/authenticateAdmin");
 
 const app = express();
 
@@ -30,6 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", authRoute);
+app.use("/admin", authenticate, authenticateAdmin, adminRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
