@@ -1,5 +1,4 @@
 const publicService = require("../services/public-service");
-const createError = require("../utils/create-error");
 
 exports.searchProduct = async (req, res, next) => {
   try {
@@ -22,7 +21,7 @@ exports.searchProduct = async (req, res, next) => {
       return acc;
     }, []);
 
-    if (findProduct.length === 0) {
+    if (result.length === 0) {
       res.json("notfound car");
     }
     res.status(200).json({ result });
