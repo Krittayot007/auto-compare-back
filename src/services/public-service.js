@@ -9,6 +9,7 @@ exports.searchProduct = async (search) => {
     //   },
     // },
     attributes: [
+      "id",
       "model",
       "description",
       "linkYoutube",
@@ -66,3 +67,34 @@ exports.searchProduct = async (search) => {
   console.log(cars);
   return cars;
 };
+
+exports.getProductById = async (id) =>
+  Cars.findByPk(id, {
+    attributes: [
+      "id",
+      "model",
+      "description",
+      "linkYoutube",
+      "linkPartner",
+      "price",
+      "discount",
+    ],
+    include: [
+      {
+        model: Brand,
+        attributes: ["id", "name"],
+      },
+      {
+        model: TypeCar,
+        attributes: ["id", "type"],
+      },
+      {
+        model: Image,
+        attributes: ["id", "imgUrl"],
+      },
+      {
+        model: EngineType,
+        attributes: ["id", "type"],
+      },
+    ],
+  });

@@ -13,6 +13,7 @@ router.post(
 router.post("/addProduct", adminController.addProduct);
 router.post("/search", publicController.searchProduct);
 router.patch("/updateProduct/:id", adminController.updateProduct);
+router.delete("/deleteFile/:id", adminController.deleteFileProduct);
 router.delete("/delete/:id", adminController.deleteProduct);
 
 module.exports = router;

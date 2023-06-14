@@ -68,6 +68,17 @@ exports.updateProduct = async (req, res, next) => {
 //   setState
 // }
 
+exports.deleteFileProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(" OOOOOOOO ", id);
+    const deleteImageProduct = await adminService.deleteFileProduct(id);
+    res.json(deleteImageProduct);
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;

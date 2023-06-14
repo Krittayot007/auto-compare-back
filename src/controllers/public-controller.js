@@ -37,3 +37,13 @@ exports.searchProduct = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.fetchProductById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const car = await publicService.getProductById(id);
+    res.json(car);
+  } catch (err) {
+    next(err);
+  }
+};

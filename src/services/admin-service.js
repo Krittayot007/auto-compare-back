@@ -39,6 +39,11 @@ exports.updateProduct = (value, id) =>
     where: { id },
   });
 
+exports.deleteFileProduct = (id) =>
+  Image.destroy({
+    where: { carsId: id },
+  });
+
 exports.deleteProduct = (id) =>
   Cars.destroy({
     where: { id },
