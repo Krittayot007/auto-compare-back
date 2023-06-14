@@ -1,4 +1,4 @@
-const { Cars, Brand, TypeCar } = require("../models");
+const { Cars, Brand, TypeCar, Image, EngineType } = require("../models");
 const { Op } = require("sequelize");
 
 exports.searchProduct = async (search) => {
@@ -10,7 +10,7 @@ exports.searchProduct = async (search) => {
     // },
     attributes: [
       "model",
-      "desciption",
+      "description",
       "linkYoutube",
       "linkPartner",
       "price",
@@ -23,6 +23,14 @@ exports.searchProduct = async (search) => {
       },
       {
         model: TypeCar,
+        attributes: ["type"],
+      },
+      {
+        model: Image,
+        attributes: ["imgUrl"],
+      },
+      {
+        model: EngineType,
         attributes: ["type"],
       },
     ],
@@ -55,5 +63,6 @@ exports.searchProduct = async (search) => {
   //       },
   //     });
   //   }
+  console.log(cars);
   return cars;
 };

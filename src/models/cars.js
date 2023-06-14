@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      desciption: {
+      description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -41,9 +41,9 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "RESTRICT",
     });
 
-    Cars.hasMany(models.SelectEngine, {
+    Cars.belongsTo(models.EngineType, {
       foreignKey: {
-        name: "carsId",
+        name: "engineId",
         allowNull: false,
       },
       onDelete: "RESTRICT",

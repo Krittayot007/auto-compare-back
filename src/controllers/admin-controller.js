@@ -4,8 +4,11 @@ const fs = require("fs");
 
 exports.addProduct = async (req, res, next) => {
   try {
-    const { product } = req.body;
+    const product = req.body;
+    // const img = req.files;
+    console.log(product);
     const result = await adminService.addProduct(product);
+    // uploadProducts(result.id, img);
     res.json(result);
   } catch (err) {
     next(err);
@@ -15,7 +18,7 @@ exports.addProduct = async (req, res, next) => {
 exports.uploadProducts = async (req, res, next) => {
   try {
     const multiupload = async (files) => {
-      // console.log(files);
+      console.log(files);
       const uploadMultiFiles = [];
       for (let file of files) {
         const result = await cloudinary.uploader.upload(file.path);
@@ -28,6 +31,7 @@ exports.uploadProducts = async (req, res, next) => {
       return uploadMultiFiles;
     };
     const { carId } = req.params;
+    console.log(req.files);
     await multiupload(req.files).then(async (uploadMultiFiles) => {
       const imgArr = uploadMultiFiles.map((el) => {
         // สร้าง [{}]

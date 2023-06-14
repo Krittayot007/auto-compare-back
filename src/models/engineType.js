@@ -13,14 +13,21 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   EngineType.associate = (models) => {
-    EngineType.hasMany(models.SelectEngine, {
+    EngineType.hasMany(models.Cars, {
       foreignKey: {
         name: "engineId",
         allowNull: false,
       },
       onDelete: "RESTRICT",
     });
+    //   EngineType.hasMany(models.SelectEngine, {
+    //     foreignKey: {
+    //       name: "engineId",
+    //       allowNull: false,
+    //     },
+    //     onDelete: "RESTRICT",
+    //   });
+    // };
   };
-
   return EngineType;
 };

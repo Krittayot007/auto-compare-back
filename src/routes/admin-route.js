@@ -2,8 +2,6 @@ const express = require("express");
 const adminController = require("../controllers/admin-controller");
 const publicController = require("../controllers/public-controller");
 const upload = require("../middleware/upload");
-const cloudinary = require("../config/cloudinary");
-const { Image } = require("../models");
 
 const router = express.Router();
 
