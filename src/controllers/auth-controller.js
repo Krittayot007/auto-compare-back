@@ -31,7 +31,7 @@ exports.login = async (req, res, next) => {
   try {
     const value = validateLogin(req.body);
     const user = await userService.getUserByEmail(value.email);
-    console.log(user);
+    console.log(user, "-----------");
     if (!user) {
       createError("invalid credential", 400);
     }
@@ -44,7 +44,10 @@ exports.login = async (req, res, next) => {
     if (!isCorrect) {
       createError("invalid credential");
     }
-    const accessToken = tokenService.sign({ id: user.id });
+    const accessToken = tokenService.sign({
+      id: user.id,
+      isAdmin: user.isAdmin,
+    });
 
     res.status(200).json({ accessToken });
   } catch (err) {
