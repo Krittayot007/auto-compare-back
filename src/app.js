@@ -8,6 +8,7 @@ const rateLimit = require("express-rate-limit");
 const authRoute = require("./routes/auth-route");
 const adminRoute = require("./routes/admin-route");
 const productRoute = require("./routes/product-route");
+const userRoute = require("./routes/user-route");
 
 const notFoundMiddleware = require("./middleware/notFound");
 const errorMiddleware = require("./middleware/error");
@@ -35,7 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", authRoute);
 app.use("/admin", authenticate, authenticateAdmin, adminRoute);
-app.use("/user", authenticate, () => {});
+app.use("/user", authenticate, userRoute);
 app.use("/product", authenticate, productRoute);
 
 app.use(notFoundMiddleware);
