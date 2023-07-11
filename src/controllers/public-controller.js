@@ -3,7 +3,7 @@ const publicService = require("../services/public-service");
 exports.searchProduct = async (req, res, next) => {
   try {
     const { search } = req.body;
-    console.log(req.body);
+    console.log("req", req);
     // console.log(search);
     const findProduct = await publicService.searchProduct(search);
     // console.log(findProduct);
